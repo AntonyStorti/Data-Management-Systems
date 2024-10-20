@@ -1,4 +1,4 @@
-### Creare il Cluster
+# Creare il Cluster
 
 E' molto semplice: 
 
