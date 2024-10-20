@@ -12,7 +12,7 @@ PREREQUISITO --> "Avere installato <b>Docker</b> sulla propria macchina!"
 <br>
 
 <b><u>N.B.</u></b> <br>
-Per compatibilità con eventuali installazioni locali di MongoDB, i nodi nel <i>Cluster</i> ascoltano sulla <b>Porta 27018</b> e non su quella di default 27017 !!!
+Per compatibilità con eventuali installazioni locali di MongoDB, il nodo Mongos (router) del <i>Cluster</i> ascolta sulla <b>Porta 27020</b> e non su quella di default 27017 !!!
 
 ## Struttura del Cluster
 
