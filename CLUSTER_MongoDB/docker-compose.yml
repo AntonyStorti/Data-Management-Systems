@@ -1,0 +1,164 @@
+
+services:
+  config-svr-1:
+    image: mongo:latest
+    container_name: config-svr-1
+    ports:
+      - "27101:27018"
+    command: mongod --configsvr --replSet config-svr-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - config-svr-1-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  config-svr-2:
+    image: mongo:latest
+    container_name: config-svr-2
+    ports:
+      - "27102:27018"
+    command: mongod --configsvr --replSet config-svr-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - config-svr-2-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  config-svr-3:
+    image: mongo:latest
+    container_name: config-svr-3
+    ports:
+      - "27103:27018"
+    command: mongod --configsvr --replSet config-svr-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - config-svr-3-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-1-node-a:
+    image: mongo:latest
+    container_name: shard-1-node-a
+    ports:
+      - "27111:27018"
+    command: mongod --shardsvr --replSet shard-1-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-1-node-a-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-1-node-b:
+    image: mongo:latest
+    container_name: shard-1-node-b
+    ports:
+      - "27112:27018"
+    command: mongod --shardsvr --replSet shard-1-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-1-node-b-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-1-node-c:
+    image: mongo:latest
+    container_name: shard-1-node-c
+    ports:
+      - "27113:27018"
+    command: mongod --shardsvr --replSet shard-1-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-1-node-c-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-2-node-a:
+    image: mongo:latest
+    container_name: shard-2-node-a
+    ports:
+      - "27121:27018"
+    command: mongod --shardsvr --replSet shard-2-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-2-node-a-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-2-node-b:
+    image: mongo:latest
+    container_name: shard-2-node-b
+    ports:
+      - "27122:27018"
+    command: mongod --shardsvr --replSet shard-2-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-2-node-b-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-2-node-c:
+    image: mongo:latest
+    container_name: shard-2-node-c
+    ports:
+      - "27123:27018"
+    command: mongod --shardsvr --replSet shard-2-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-2-node-c-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-3-node-a:
+    image: mongo:latest
+    container_name: shard-3-node-a
+    ports:
+      - "27131:27018"
+    command: mongod --shardsvr --replSet shard-3-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-3-node-a-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-3-node-b:
+    image: mongo:latest
+    container_name: shard-3-node-b
+    ports:
+      - "27132:27018"
+    command: mongod --shardsvr --replSet shard-3-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-3-node-b-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  shard-3-node-c:
+    image: mongo:latest
+    container_name: shard-3-node-c
+    ports:
+      - "27133:27018"
+    command: mongod --shardsvr --replSet shard-3-replica-set --port 27018
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - shard-3-node-c-data:/data/db  # Monta un volume per la persistenza dei dati
+
+  router:
+    image: mongo:latest
+    container_name: router
+    ports:
+      - "27141:27018"
+    command: mongos --configdb config-svr-replica-set/config-svr-1:27018,config-svr-2:27018,config-svr-3:27018 --port 27018 --bind_ip_all
+    networks:
+      - mongo-shard-cluster
+    volumes:
+      - router-data:/data/db  # Monta un volume per la persistenza dei dati
+
+networks:
+  mongo-shard-cluster:
+    driver: bridge
+    name: mongo-shard-cluster
+
+volumes:
+  config-svr-1-data: {}
+  config-svr-2-data: {}
+  config-svr-3-data: {}
+  shard-1-node-a-data: {}
+  shard-1-node-b-data: {}
+  shard-1-node-c-data: {}
+  shard-2-node-a-data: {}
+  shard-2-node-b-data: {}
+  shard-2-node-c-data: {}
+  shard-3-node-a-data: {}
+  shard-3-node-b-data: {}
+  shard-3-node-c-data: {}
+  router-data: {}
