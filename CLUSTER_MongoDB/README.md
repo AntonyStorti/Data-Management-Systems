@@ -1,4 +1,4 @@
-# Creare il Cluster
+### Creare il Cluster
 
 E' molto semplice: 
 
@@ -34,7 +34,7 @@ E' così costituita:
 
 <img width="661" alt="Screenshot 2024-10-20 alle 12 03 07" src="https://github.com/user-attachments/assets/5ca0e47b-0538-40ab-b522-20bfb6341321">
 
-# Sharding e Replica Sets
+## Sharding e Replica Sets
 
 Le seguenti immagini, fanno comprendere come il <i>Cluster</i> gestisce tali aspetti:
 
