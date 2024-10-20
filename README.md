@@ -1,6 +1,6 @@
 # Data-Management-Systems
 
-Questo repository contiene il codice sorgente degl progetto sviluppato nel corso di: <br>
+Questo repository contiene il codice sorgente del progetto sviluppato nel corso di: <br>
 <br>
 
 <b>"Data Management Systems", Università degli Studi di Salerno, DIEM, A.A 2024/2025.</b>
