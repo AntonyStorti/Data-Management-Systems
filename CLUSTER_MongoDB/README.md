@@ -8,7 +8,7 @@ PREREQUISITO --> "Avere installato <b>Docker</b> sulla propria macchina!"
 2) Accedete a tale cartella dal terminale.
 3) Lanciate il comando <i>make install</i>
 
-<br><br>
+<br>
 
 <b><u>N.B.</u></b> <br>
 Per compatibilità con eventuali installazioni locali di MongoDB, i nodi nel <i>Cluster</i> ascoltano sulla <b>Porta 27018</b> e non su quella di default 27017 !!!
