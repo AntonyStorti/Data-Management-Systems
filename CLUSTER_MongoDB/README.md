@@ -7,6 +7,7 @@ PREREQUISITO --> "Avere installato <b>Docker</b> sulla propria macchina!"
 1) Scaricate il contenuto di questa directory.
 2) Accedete a tale cartella dal terminale.
 3) Lanciate il comando <i>make install</i>
+4) Riavviare i containers.
 
 <br>
 
