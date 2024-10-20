@@ -10,7 +10,7 @@ PREREQUISITO --> "Avere installato <b>Docker</b> sulla propria macchina!"
 
 ## Struttura del Cluster
 
-<b>N.B.</b> <br>
+<b><u>N.B.</u></b> <br>
 Si prega di notare che esso non è adatto ad un uso reale in ambiente Enterprise, ma, solo per le fasi di sviluppo e di test,o, di piccoli scenari applicativi!
 
 <br>
