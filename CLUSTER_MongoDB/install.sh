@@ -97,5 +97,5 @@ sleep 10
 docker exec -it router bash -c '
    mkdir -p /home/DMS_MongoDB && \
    python3 -m venv /home/DMS_MongoDB/venv && \
-   /home/DMS_MongoDB/venv/bin/python3 -m pip install pymongo
+   /home/DMS_MongoDB/venv/bin/python3 -m pip install pymongo motor
 '
