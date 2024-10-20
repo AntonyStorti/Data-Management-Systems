@@ -37,8 +37,8 @@ services:
     image: mongo:latest
     container_name: shard-1-node-a
     ports:
-      - "27111:27018"
-    command: mongod --shardsvr --replSet shard-1-replica-set --port 27018
+      - "27111:27019"
+    command: mongod --shardsvr --replSet shard-1-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -48,8 +48,8 @@ services:
     image: mongo:latest
     container_name: shard-1-node-b
     ports:
-      - "27112:27018"
-    command: mongod --shardsvr --replSet shard-1-replica-set --port 27018
+      - "27112:27019"
+    command: mongod --shardsvr --replSet shard-1-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -59,8 +59,8 @@ services:
     image: mongo:latest
     container_name: shard-1-node-c
     ports:
-      - "27113:27018"
-    command: mongod --shardsvr --replSet shard-1-replica-set --port 27018
+      - "27113:27019"
+    command: mongod --shardsvr --replSet shard-1-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -70,8 +70,8 @@ services:
     image: mongo:latest
     container_name: shard-2-node-a
     ports:
-      - "27121:27018"
-    command: mongod --shardsvr --replSet shard-2-replica-set --port 27018
+      - "27121:27019"
+    command: mongod --shardsvr --replSet shard-2-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -81,8 +81,8 @@ services:
     image: mongo:latest
     container_name: shard-2-node-b
     ports:
-      - "27122:27018"
-    command: mongod --shardsvr --replSet shard-2-replica-set --port 27018
+      - "27122:27019"
+    command: mongod --shardsvr --replSet shard-2-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -92,8 +92,8 @@ services:
     image: mongo:latest
     container_name: shard-2-node-c
     ports:
-      - "27123:27018"
-    command: mongod --shardsvr --replSet shard-2-replica-set --port 27018
+      - "27123:27019"
+    command: mongod --shardsvr --replSet shard-2-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -103,8 +103,8 @@ services:
     image: mongo:latest
     container_name: shard-3-node-a
     ports:
-      - "27131:27018"
-    command: mongod --shardsvr --replSet shard-3-replica-set --port 27018
+      - "27131:27019"
+    command: mongod --shardsvr --replSet shard-3-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -114,8 +114,8 @@ services:
     image: mongo:latest
     container_name: shard-3-node-b
     ports:
-      - "27132:27018"
-    command: mongod --shardsvr --replSet shard-3-replica-set --port 27018
+      - "27132:27019"
+    command: mongod --shardsvr --replSet shard-3-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -125,8 +125,8 @@ services:
     image: mongo:latest
     container_name: shard-3-node-c
     ports:
-      - "27133:27018"
-    command: mongod --shardsvr --replSet shard-3-replica-set --port 27018
+      - "27133:27019"
+    command: mongod --shardsvr --replSet shard-3-replica-set --port 27019
     networks:
       - mongo-shard-cluster
     volumes:
@@ -136,8 +136,8 @@ services:
     image: mongo:latest
     container_name: router
     ports:
-      - "27141:27018"
-    command: mongos --configdb config-svr-replica-set/config-svr-1:27018,config-svr-2:27018,config-svr-3:27018 --port 27018 --bind_ip_all
+      - "27141:27020"
+    command: mongos --configdb config-svr-replica-set/config-svr-1:27018,config-svr-2:27018,config-svr-3:27018 --port 27020 --bind_ip_all
     networks:
       - mongo-shard-cluster
     volumes:
