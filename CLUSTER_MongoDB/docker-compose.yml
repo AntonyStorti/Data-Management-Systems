@@ -1,4 +1,4 @@
-ffff
+
 services:
   config-svr-1:
     image: mongo:latest
