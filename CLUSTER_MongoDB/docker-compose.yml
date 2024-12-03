@@ -1,4 +1,3 @@
-
 services:
   config-svr-1:
     image: mongo:latest
@@ -9,7 +8,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - config-svr-1-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/config-svr-1-data:/data/db
 
   config-svr-2:
     image: mongo:latest
@@ -20,7 +19,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - config-svr-2-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/config-svr-2-data:/data/db
 
   config-svr-3:
     image: mongo:latest
@@ -31,7 +30,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - config-svr-3-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/config-svr-3-data:/data/db
 
   shard-1-node-a:
     image: mongo:latest
@@ -42,7 +41,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-1-node-a-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-1-node-a-data:/data/db
 
   shard-1-node-b:
     image: mongo:latest
@@ -53,7 +52,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-1-node-b-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-1-node-b-data:/data/db
 
   shard-1-node-c:
     image: mongo:latest
@@ -64,7 +63,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-1-node-c-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-1-node-c-data:/data/db
 
   shard-2-node-a:
     image: mongo:latest
@@ -75,7 +74,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-2-node-a-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-2-node-a-data:/data/db
 
   shard-2-node-b:
     image: mongo:latest
@@ -86,7 +85,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-2-node-b-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-2-node-b-data:/data/db
 
   shard-2-node-c:
     image: mongo:latest
@@ -97,7 +96,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-2-node-c-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-2-node-c-data:/data/db
 
   shard-3-node-a:
     image: mongo:latest
@@ -108,7 +107,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-3-node-a-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-3-node-a-data:/data/db
 
   shard-3-node-b:
     image: mongo:latest
@@ -119,7 +118,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-3-node-b-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-3-node-b-data:/data/db
 
   shard-3-node-c:
     image: mongo:latest
@@ -130,7 +129,7 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - shard-3-node-c-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/shard-3-node-c-data:/data/db
 
   router:
     image: mongo:latest
@@ -141,24 +140,10 @@ services:
     networks:
       - mongo-shard-cluster
     volumes:
-      - router-data:/data/db  # Monta un volume per la persistenza dei dati
+      - /mnt/MongoDB/router-data:/data/db
 
 networks:
   mongo-shard-cluster:
     driver: bridge
     name: mongo-shard-cluster
 
-volumes:
-  config-svr-1-data: {}
-  config-svr-2-data: {}
-  config-svr-3-data: {}
-  shard-1-node-a-data: {}
-  shard-1-node-b-data: {}
-  shard-1-node-c-data: {}
-  shard-2-node-a-data: {}
-  shard-2-node-b-data: {}
-  shard-2-node-c-data: {}
-  shard-3-node-a-data: {}
-  shard-3-node-b-data: {}
-  shard-3-node-c-data: {}
-  router-data: {}
