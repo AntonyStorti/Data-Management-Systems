@@ -4,7 +4,7 @@ from neo4j import GraphDatabase
 # Configurazione del database
 NEO4J_URI = "bolt://localhost:7689"
 NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = "crociera"
+NEO4J_PASSWORD = "***"
 
 class Neo4jHandler:
     def __init__(self, uri, user, password):
