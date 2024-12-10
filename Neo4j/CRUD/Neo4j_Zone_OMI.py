@@ -6,7 +6,7 @@ from shapely import wkt
 # Configura la connessione a Neo4j
 uri = "bolt://localhost:7689"
 user = "neo4j"
-password = "crociera"
+password = "***"
 
 # Crea una sessione con Neo4j
 driver = GraphDatabase.driver(uri, auth=(user, password))
