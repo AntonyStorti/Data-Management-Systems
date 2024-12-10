@@ -115,7 +115,7 @@ class Neo4jHandler:
 
 neo4j_uri = "bolt://localhost:7689"
 neo4j_user = "neo4j"
-neo4j_password = "crociera"
+neo4j_password = "***"
 indirizzi_file = "Impianti_Fotovoltaici.Indirizzi.json"
 persone_file = "Impianti_Fotovoltaici.Avellino_Redditi.json"
 
