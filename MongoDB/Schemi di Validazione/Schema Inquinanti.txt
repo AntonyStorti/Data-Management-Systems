@@ -1,0 +1,80 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'properties',
+      'geometry'
+    ],
+    properties: {
+      properties: {
+        bsonType: 'object',
+        required: [
+          'Name',
+          'COMUNE',
+          'inquinante',
+          'data_ora',
+          'valore'
+        ],
+        properties: {
+          Name: {
+            bsonType: 'string',
+            description: 'Deve essere una stringa che rappresenta il nome della stazione di monitoraggio.'
+          },
+          COMUNE: {
+            bsonType: 'string',
+            'enum': [
+              'Avellino',
+              'Napoli',
+              'Roma',
+              'Milano',
+              'Genova',
+              'Venezia'
+            ],
+            description: 'Deve essere una stringa che rappresenta il comune di localizzazione della stazione e deve essere uno dei seguenti valori: \'Avellino\', \'Napoli\', \'Roma\', \'Milano\', \'Genova\', \'Venezia\'.'
+          },
+          inquinante: {
+            bsonType: 'string',
+            description: 'Deve essere una stringa che rappresenta il tipo di inquinante (ad esempio NO2).'
+          },
+          data_ora: {
+            bsonType: 'date',
+            description: 'Deve essere una data che rappresenta la data e ora della misurazione.'
+          },
+          valore: {
+            bsonType: [
+              'int',
+              'double'
+            ],
+            description: 'Deve essere un numero che rappresenta il valore della concentrazione dell\'inquinante (es. 47.2 µg/m³).'
+          }
+        }
+      },
+      geometry: {
+        bsonType: 'object',
+        required: [
+          'type',
+          'coordinates'
+        ],
+        properties: {
+          type: {
+            bsonType: 'string',
+            'enum': [
+              'Point'
+            ],
+            description: 'Deve essere una stringa con valore \'Point\', che indica un punto geografico.'
+          },
+          coordinates: {
+            bsonType: 'array',
+            items: {
+              bsonType: 'double'
+            },
+            minItems: 2,
+            maxItems: 2,
+            description: 'Deve essere un array contenente due valori numerici (longitudine, latitudine) che definiscono una posizione geografica.'
+          }
+        },
+        description: 'Deve essere un oggetto che rappresenta la posizione geografica come un punto, con le proprietà \'type\' e \'coordinates\'.'
+      }
+    }
+  }
+}

@@ -1,0 +1,332 @@
+{
+    "serverInfo": {
+        "host": "e4cc3e97da80",
+        "port": 27020,
+        "version": "8.0.3",
+        "gitVersion": "89d97f2744a2b9851ddfb51bdf22f687562d9b06"
+    },
+    "serverParameters": {
+        "internalQueryFacetBufferSizeBytes": 104857600,
+        "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+        "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+        "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+        "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+        "internalQueryProhibitBlockingMergeOnMongoS": 0,
+        "internalQueryMaxAddToSetBytes": 104857600,
+        "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+        "internalQueryFrameworkControl": "trySbeRestricted",
+        "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "mergeType": "mongos",
+    "splitPipeline": {
+        "shardsPart": [
+            {
+                "$match": {
+                    "citt\u00e0": {
+                        "$eq": "Avellino"
+                    }
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "Avellino_OMI",
+                    "as": "zona_info",
+                    "localField": "OMI",
+                    "foreignField": "_id",
+                    "unwinding": {
+                        "preserveNullAndEmptyArrays": false
+                    }
+                }
+            },
+            {
+                "$group": {
+                    "_id": "$zona_info.properties.name",
+                    "media_consumo": {
+                        "$avg": "$consumo_energetico"
+                    }
+                }
+            }
+        ],
+        "mergerPart": [
+            {
+                "$mergeCursors": {
+                    "lsid": {
+                        "id": "17d34da2eb584da2b6e3b902f0b95dac",
+                        "uid": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    },
+                    "compareWholeSortKey": false,
+                    "tailableMode": "normal",
+                    "nss": "Impianti_Fotovoltaici.Consumi_Elettrici",
+                    "allowPartialResults": false,
+                    "recordRemoteOpWaitTime": false,
+                    "requestQueryStatsFromRemotes": false
+                }
+            },
+            {
+                "$group": {
+                    "_id": "$$ROOT._id",
+                    "media_consumo": {
+                        "$avg": "$$ROOT.media_consumo"
+                    },
+                    "$doingMerge": true
+                }
+            },
+            {
+                "$project": {
+                    "media_consumo": true,
+                    "name": "$_id",
+                    "_id": false
+                }
+            }
+        ]
+    },
+    "shards": {
+        "shard-2-replica-set": {
+            "host": "shard-2-node-a:27019",
+            "explainVersion": "1",
+            "stages": [
+                {
+                    "$cursor": {
+                        "queryPlanner": {
+                            "namespace": "Impianti_Fotovoltaici.Consumi_Elettrici",
+                            "parsedQuery": {
+                                "citt\u00e0": {
+                                    "$eq": "Avellino"
+                                }
+                            },
+                            "indexFilterSet": false,
+                            "queryHash": "F344BC29",
+                            "planCacheKey": "7B2AA8ED",
+                            "optimizationTimeMillis": 0,
+                            "maxIndexedOrSolutionsReached": false,
+                            "maxIndexedAndSolutionsReached": false,
+                            "maxScansToExplodeReached": false,
+                            "prunedSimilarIndexes": false,
+                            "winningPlan": {
+                                "isCached": false,
+                                "stage": "PROJECTION_SIMPLE",
+                                "transformBy": {
+                                    "OMI": 1,
+                                    "consumo_energetico": 1,
+                                    "_id": 0
+                                },
+                                "inputStage": {
+                                    "stage": "SHARDING_FILTER",
+                                    "inputStage": {
+                                        "stage": "COLLSCAN",
+                                        "filter": {
+                                            "citt\u00e0": {
+                                                "$eq": "Avellino"
+                                            }
+                                        },
+                                        "direction": "forward"
+                                    }
+                                }
+                            },
+                            "rejectedPlans": []
+                        }
+                    }
+                },
+                {
+                    "$lookup": {
+                        "from": "Avellino_OMI",
+                        "as": "zona_info",
+                        "localField": "OMI",
+                        "foreignField": "_id",
+                        "unwinding": {
+                            "preserveNullAndEmptyArrays": false
+                        }
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": "$zona_info.properties.name",
+                        "media_consumo": {
+                            "$avg": "$consumo_energetico"
+                        }
+                    }
+                }
+            ]
+        },
+        "shard-1-replica-set": {
+            "host": "shard-1-node-b:27019",
+            "explainVersion": "1",
+            "stages": [
+                {
+                    "$cursor": {
+                        "queryPlanner": {
+                            "namespace": "Impianti_Fotovoltaici.Consumi_Elettrici",
+                            "parsedQuery": {
+                                "citt\u00e0": {
+                                    "$eq": "Avellino"
+                                }
+                            },
+                            "indexFilterSet": false,
+                            "queryHash": "F344BC29",
+                            "planCacheKey": "7B2AA8ED",
+                            "optimizationTimeMillis": 0,
+                            "maxIndexedOrSolutionsReached": false,
+                            "maxIndexedAndSolutionsReached": false,
+                            "maxScansToExplodeReached": false,
+                            "prunedSimilarIndexes": false,
+                            "winningPlan": {
+                                "isCached": false,
+                                "stage": "PROJECTION_SIMPLE",
+                                "transformBy": {
+                                    "OMI": 1,
+                                    "consumo_energetico": 1,
+                                    "_id": 0
+                                },
+                                "inputStage": {
+                                    "stage": "SHARDING_FILTER",
+                                    "inputStage": {
+                                        "stage": "COLLSCAN",
+                                        "filter": {
+                                            "citt\u00e0": {
+                                                "$eq": "Avellino"
+                                            }
+                                        },
+                                        "direction": "forward"
+                                    }
+                                }
+                            },
+                            "rejectedPlans": []
+                        }
+                    }
+                },
+                {
+                    "$lookup": {
+                        "from": "Avellino_OMI",
+                        "as": "zona_info",
+                        "localField": "OMI",
+                        "foreignField": "_id",
+                        "unwinding": {
+                            "preserveNullAndEmptyArrays": false
+                        }
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": "$zona_info.properties.name",
+                        "media_consumo": {
+                            "$avg": "$consumo_energetico"
+                        }
+                    }
+                }
+            ]
+        },
+        "shard-3-replica-set": {
+            "host": "shard-3-node-c:27019",
+            "explainVersion": "1",
+            "stages": [
+                {
+                    "$cursor": {
+                        "queryPlanner": {
+                            "namespace": "Impianti_Fotovoltaici.Consumi_Elettrici",
+                            "parsedQuery": {
+                                "citt\u00e0": {
+                                    "$eq": "Avellino"
+                                }
+                            },
+                            "indexFilterSet": false,
+                            "queryHash": "F344BC29",
+                            "planCacheKey": "7B2AA8ED",
+                            "optimizationTimeMillis": 0,
+                            "maxIndexedOrSolutionsReached": false,
+                            "maxIndexedAndSolutionsReached": false,
+                            "maxScansToExplodeReached": false,
+                            "prunedSimilarIndexes": false,
+                            "winningPlan": {
+                                "isCached": false,
+                                "stage": "PROJECTION_SIMPLE",
+                                "transformBy": {
+                                    "OMI": 1,
+                                    "consumo_energetico": 1,
+                                    "_id": 0
+                                },
+                                "inputStage": {
+                                    "stage": "SHARDING_FILTER",
+                                    "inputStage": {
+                                        "stage": "COLLSCAN",
+                                        "filter": {
+                                            "citt\u00e0": {
+                                                "$eq": "Avellino"
+                                            }
+                                        },
+                                        "direction": "forward"
+                                    }
+                                }
+                            },
+                            "rejectedPlans": []
+                        }
+                    }
+                },
+                {
+                    "$lookup": {
+                        "from": "Avellino_OMI",
+                        "as": "zona_info",
+                        "localField": "OMI",
+                        "foreignField": "_id",
+                        "unwinding": {
+                            "preserveNullAndEmptyArrays": false
+                        }
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": "$zona_info.properties.name",
+                        "media_consumo": {
+                            "$avg": "$consumo_energetico"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "command": {
+        "aggregate": "Consumi_Elettrici",
+        "pipeline": [
+            {
+                "$match": {
+                    "citt\u00e0": "Avellino"
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "Avellino_OMI",
+                    "localField": "OMI",
+                    "foreignField": "_id",
+                    "as": "zona_info"
+                }
+            },
+            {
+                "$unwind": "$zona_info"
+            },
+            {
+                "$group": {
+                    "_id": "$zona_info.properties.name",
+                    "media_consumo": {
+                        "$avg": "$consumo_energetico"
+                    }
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "name": "$_id",
+                    "media_consumo": 1
+                }
+            }
+        ],
+        "cursor": {}
+    },
+    "ok": 1.0,
+    "$clusterTime": {
+        "clusterTime": "2024-12-10T10:09:04+00:00",
+        "signature": {
+            "hash": "0000000000000000000000000000000000000000",
+            "keyId": 0
+        }
+    },
+    "operationTime": "2024-12-10T10:09:01+00:00"
+}

@@ -1,0 +1,59 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'Indirizzo',
+      'Civico',
+      'Città',
+      'location'
+    ],
+    properties: {
+      Indirizzo: {
+        bsonType: 'string',
+        description: 'Deve essere una stringa che rappresenta l\'indirizzo della località.'
+      },
+      Civico: {
+        bsonType: 'int',
+        description: 'Deve essere un intero che rappresenta il numero civico dell\'indirizzo.'
+      },
+      'Città': {
+        bsonType: 'string',
+        'enum': [
+          'Avellino',
+          'Napoli',
+          'Roma',
+          'Milano',
+          'Genova',
+          'Venezia'
+        ],
+        description: 'Deve essere una stringa che rappresenta il nome della città, e deve essere uno dei seguenti valori: \'Avellino\', \'Napoli\', \'Roma\', \'Milano\', \'Genova\', \'Venezia\'.'
+      },
+      location: {
+        bsonType: 'object',
+        required: [
+          'type',
+          'coordinates'
+        ],
+        properties: {
+          type: {
+            bsonType: 'string',
+            'enum': [
+              'Point'
+            ],
+            description: 'Deve essere una stringa con valore \'Point\', che indica un punto geografico.'
+          },
+          coordinates: {
+            bsonType: 'array',
+            items: {
+              bsonType: 'double'
+            },
+            minItems: 2,
+            maxItems: 2,
+            description: 'Deve essere un array contenente due valori numerici (longitudine, latitudine) che definiscono una posizione geografica.'
+          }
+        },
+        description: 'Deve essere un oggetto che rappresenta la posizione geografica come un punto, con le proprietà \'type\' e \'coordinates\'.'
+      }
+    }
+  }
+}

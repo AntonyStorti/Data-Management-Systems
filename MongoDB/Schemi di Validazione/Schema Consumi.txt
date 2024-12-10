@@ -1,0 +1,61 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      '_id',
+      'ID',
+      'codzona',
+      'città',
+      'consumo_energetico',
+      'Unità Misura',
+      'data_ora'
+    ],
+    properties: {
+      _id: {
+        bsonType: 'objectId',
+        description: 'Deve essere un ObjectId valido'
+      },
+      ID: {
+        bsonType: 'objectId',
+        description: 'Deve essere un ObjectId valido'
+      },
+      codzona: {
+        bsonType: 'string',
+        description: 'Codice zona (stringa alfanumerica)'
+      },
+      'città': {
+        bsonType: 'string',
+        'enum': [
+          'Avellino',
+          'Napoli',
+          'Roma',
+          'Milano',
+          'Genova',
+          'Venezia'
+        ],
+        description: 'Nome della città (deve essere tra i valori consentiti)'
+      },
+      consumo_energetico: {
+        bsonType: [
+          'int',
+          'double'
+        ],
+        minimum: 0,
+        description: 'Consumo energetico (numero non negativo)'
+      },
+      'Unità Misura': {
+        bsonType: 'string',
+        'enum': [
+          'MWh',
+          'kWh',
+          'GWh'
+        ],
+        description: 'Unità di misura del consumo energetico'
+      },
+      data_ora: {
+        bsonType: 'date',
+        description: 'Timestamp della registrazione (formato ISO)'
+      }
+    }
+  }
+}

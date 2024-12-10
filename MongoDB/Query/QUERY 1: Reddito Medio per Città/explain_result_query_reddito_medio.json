@@ -1,0 +1,85 @@
+{
+    "serverInfo": {
+        "host": "e4cc3e97da80",
+        "port": 27020,
+        "version": "8.0.3",
+        "gitVersion": "89d97f2744a2b9851ddfb51bdf22f687562d9b06"
+    },
+    "serverParameters": {
+        "internalQueryFacetBufferSizeBytes": 104857600,
+        "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+        "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+        "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+        "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+        "internalQueryProhibitBlockingMergeOnMongoS": 0,
+        "internalQueryMaxAddToSetBytes": 104857600,
+        "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+        "internalQueryFrameworkControl": "trySbeRestricted",
+        "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "splitPipeline": null,
+    "shards": {
+        "shard-3-replica-set": {
+            "host": "shard-3-node-b:27019",
+            "explainVersion": "2",
+            "queryPlanner": {
+                "namespace": "Impianti_Fotovoltaici.Avellino_Redditi",
+                "parsedQuery": {},
+                "indexFilterSet": false,
+                "queryHash": "DF89780E",
+                "planCacheKey": "E6F2A58E",
+                "optimizationTimeMillis": 0,
+                "optimizedPipeline": true,
+                "maxIndexedOrSolutionsReached": false,
+                "maxIndexedAndSolutionsReached": false,
+                "maxScansToExplodeReached": false,
+                "prunedSimilarIndexes": false,
+                "winningPlan": {
+                    "isCached": false,
+                    "queryPlan": {
+                        "stage": "GROUP",
+                        "planNodeId": 4,
+                        "inputStage": {
+                            "stage": "SHARDING_FILTER",
+                            "planNodeId": 2,
+                            "inputStage": {
+                                "stage": "COLLSCAN",
+                                "planNodeId": 1,
+                                "filter": {},
+                                "direction": "forward"
+                            }
+                        }
+                    },
+                    "slotBasedPlan": {
+                        "slots": "$$RESULT=s13 env: { s1 = ShardFilterer (shardFilterer) }",
+                        "stages": "[4] project [s13 = newBsonObj(\"_id\", s11, \"media_reddito\", s12)] \n[4] project [s11 = null, s12 = \n    if (s10 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s9) / s10) \n] \n[4] group [] [s9 = aggDoubleDoubleSum(s3), s10 = sum(\n    if ((typeMatch(s3, 1088) ?: true) || !(isNumber(s3))) \n    then 0ll \n    else 1ll \n)] spillSlots[s7, s8] mergingExprs[aggMergeDoubleDoubleSums(s7), sum(s8)] \n[2] filter {shardFilter(s1, makeBsonObj(MakeObjSpec([Soggetto = Add(0), Data di Nascita = Add(1)], Open), Nothing, false, (s4 ?: null), (s2 ?: null)))} \n[1] scan s5 s6 none none none none none none lowPriority [s2 = Data di Nascita, s3 = Reddito Imponibile, s4 = Soggetto] @\"1bd87a4a-ee4f-4d05-87d0-6f7d6eff7c83\" true false "
+                    }
+                },
+                "rejectedPlans": []
+            }
+        }
+    },
+    "command": {
+        "aggregate": "Avellino_Redditi",
+        "pipeline": [
+            {
+                "$group": {
+                    "_id": null,
+                    "media_reddito": {
+                        "$avg": "$Reddito Imponibile"
+                    }
+                }
+            }
+        ],
+        "cursor": {}
+    },
+    "ok": 1.0,
+    "$clusterTime": {
+        "clusterTime": "2024-12-07T12:03:55+00:00",
+        "signature": {
+            "hash": "0000000000000000000000000000000000000000",
+            "keyId": 0
+        }
+    },
+    "operationTime": "2024-12-07T12:03:49+00:00"
+}

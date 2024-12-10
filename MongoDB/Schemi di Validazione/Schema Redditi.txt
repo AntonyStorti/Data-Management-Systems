@@ -1,0 +1,74 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'Soggetto',
+      'Data di Nascita',
+      'Reddito Imponibile',
+      'Imposta Netta',
+      'Tipo Modello'
+    ],
+    properties: {
+      _id: {
+        bsonType: 'objectId',
+        description: 'Identificativo univoco del documento.'
+      },
+      Soggetto: {
+        bsonType: 'string',
+        description: 'Nome del soggetto.'
+      },
+      'Data di Nascita': {
+        bsonType: 'date',
+        description: 'Data di nascita del soggetto in formato ISO 8601.'
+      },
+      'Categoria di Reddito': {
+        bsonType: 'string',
+        pattern: '^[A-Za-z]+$',
+        description: 'Categoria di reddito del soggetto.'
+      },
+      'Codice Attività': {
+        bsonType: [
+          'string',
+          'int',
+          'double'
+        ],
+        pattern: '^[a-zA-Z0-9.]+$',
+        description: 'Codice che rappresenta l\'attività economica del soggetto. Deve essere una stringa alfanumerica che può contenere anche un punto.'
+      },
+      'Reddito Imponibile': {
+        bsonType: 'double',
+        minimum: 0,
+        description: 'Reddito imponibile del soggetto, deve essere un valore positivo o zero.'
+      },
+      'Imposta Netta': {
+        bsonType: 'double',
+        minimum: 0,
+        description: 'Ammontare dell\'imposta netta.'
+      },
+      'Reddito d\'Impresa / Lavoro Autonomo': {
+        bsonType: 'double',
+        minimum: 0,
+        description: 'Reddito proveniente da attività d\'impresa o lavoro autonomo, può essere zero se non applicabile.'
+      },
+      'Volume d\'Affari': {
+        bsonType: 'double',
+        minimum: 0,
+        description: 'Volume d\'affari del soggetto, può essere zero se non applicabile.'
+      },
+      'Tipo Modello': {
+        bsonType: [
+          'string',
+          'int'
+        ],
+        'enum': [
+          730,
+          '730',
+          'CUD',
+          'UNICOPF',
+          'IVA'
+        ],
+        description: 'Tipo di modello fiscale, valori possibili: 730, CUD, UNICOPF, IVA.'
+      }
+    }
+  }
+}
