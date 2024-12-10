@@ -47,7 +47,7 @@ def main():
     # Connessione a Neo4j
     uri = "bolt://localhost:7689"
     user = "neo4j"
-    password = "crociera"
+    password = "***"
 
     driver = get_neo4j_driver(uri, user, password)
 
